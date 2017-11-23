@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         view_pager.setAdapter(mViewPagerAdapter);
         view_pager.setOnPageChangeListener(this);
-        view_pager.setOffscreenPageLimit(3);
-        view_pager.setCurrentItem(1);
+//        view_pager.setOffscreenPageLimit(3);
+        view_pager.setCurrentItem(0);
 
     }
     private void hide() {
