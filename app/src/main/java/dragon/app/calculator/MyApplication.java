@@ -13,6 +13,6 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "Roboto-Regular.ttf"); // font from assets: "assets/Roboto-Regular.ttf
+        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "OpenSans-Light.ttf"); // font from assets: "assets/Roboto-Regular.ttf
     }
 }

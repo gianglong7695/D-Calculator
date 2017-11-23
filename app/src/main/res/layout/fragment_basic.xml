@@ -1,0 +1,233 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal"
+    android:padding="@dimen/default_space"
+    tools:context="dragon.app.calculator.fragments.BasicFragment">
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/Default_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:src="@drawable/ic_setting_white" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="%" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/seven" />
+
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/four" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/one" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:text="@string/plus_minus" />
+
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/Default_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:src="@drawable/ic_back_white" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/parenthesis_1" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/eight" />
+
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/five" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/two" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:text="@string/zero" />
+
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/clear" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/parenthesis_2" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/nine" />
+
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/six" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/three" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:text="@string/comma" />
+
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/div" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/mul" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/sub" />
+
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:layout_rowWeight="1"
+            android:text="@string/add" />
+
+        <TextView
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="5dp"
+            android:layout_rowWeight="2.05"
+            android:text="@string/equal" />
+
+    </GridLayout>
+</LinearLayout>
