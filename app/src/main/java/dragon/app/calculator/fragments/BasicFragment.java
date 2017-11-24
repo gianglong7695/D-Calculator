@@ -12,6 +12,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dragon.app.calculator.R;
+import dragon.app.calculator.interfaces.OnSetResult;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +66,9 @@ public class BasicFragment extends Fragment {
     TextView tv_comma;
 
 
+
+    private OnSetResult onSetResult;
+
     public BasicFragment() {
         // Required empty public constructor
     }
@@ -80,6 +84,12 @@ public class BasicFragment extends Fragment {
 
 
 
+        tv_comma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSetResult.setResult("Hello world");
+            }
+        });
 
 
         return v;

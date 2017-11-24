@@ -7,11 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dragon.app.calculator.R;
 import dragon.app.calculator.adapters.ViewPagerAdapter;
+import dragon.app.calculator.interfaces.OnSetResult;
 
 import static dragon.app.calculator.utils.Constants.STATUS_BAR_DELAY_HIDE;
 
@@ -19,7 +21,7 @@ import static dragon.app.calculator.utils.Constants.STATUS_BAR_DELAY_HIDE;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, OnSetResult{
     @BindView(R.id.layout_root)
     View layout_root;
     @BindView(R.id.view_pager)
@@ -87,5 +89,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void setResult(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 }

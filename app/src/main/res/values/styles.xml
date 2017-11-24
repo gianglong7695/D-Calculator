@@ -39,7 +39,7 @@
 
 
     <style name="Default_img">
-        <item name="android:background">@drawable/border_button</item>
+        <item name="android:background">@drawable/background_button</item>
         <item name="android:padding">20dp</item>
     </style>
 
