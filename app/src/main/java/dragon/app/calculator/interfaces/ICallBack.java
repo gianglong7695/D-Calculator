@@ -1,9 +1,9 @@
 package dragon.app.calculator.interfaces;
 
 /**
- * Created by VCCORP on 11/24/2017.
+ * Created by VCCORP on 11/27/2017.
  */
 
-public interface OnSetResult{
+public interface ICallBack {
     void setResult(String text);
 }

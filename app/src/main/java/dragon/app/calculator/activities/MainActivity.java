@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dragon.app.calculator.R;
 import dragon.app.calculator.adapters.ViewPagerAdapter;
-import dragon.app.calculator.interfaces.OnSetResult;
+import dragon.app.calculator.interfaces.ICallBack;
 
 import static dragon.app.calculator.utils.Constants.STATUS_BAR_DELAY_HIDE;
 
@@ -21,13 +21,11 @@ import static dragon.app.calculator.utils.Constants.STATUS_BAR_DELAY_HIDE;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, OnSetResult{
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, ICallBack{
     @BindView(R.id.layout_root)
     View layout_root;
     @BindView(R.id.view_pager)
     ViewPager view_pager;
-
-
 
     private final Handler mHideHandler = new Handler();
     private ViewPagerAdapter mViewPagerAdapter;
@@ -39,12 +37,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         ButterKnife.bind(this);
 
 
+        
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         view_pager.setAdapter(mViewPagerAdapter);
         view_pager.setOnPageChangeListener(this);
 //        view_pager.setOffscreenPageLimit(3);
         view_pager.setCurrentItem(0);
-
     }
     private void hide() {
         // Hide UI first
