@@ -7,12 +7,14 @@ package dragon.app.calculator.models;
 public class KeyEntity {
     private String keyName;
     private String keyValue;
+    private String type;
 
-
-    public KeyEntity(String keyName, String keyValue) {
+    public KeyEntity(String keyName, String keyValue, String type) {
         this.keyName = keyName;
         this.keyValue = keyValue;
+        this.type = type;
     }
+
 
     public String getKeyName() {
         return keyName;
@@ -30,11 +32,20 @@ public class KeyEntity {
         this.keyValue = keyValue;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "KeyEntity{" +
                 "keyName='" + keyName + '\'' +
                 ", keyValue='" + keyValue + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

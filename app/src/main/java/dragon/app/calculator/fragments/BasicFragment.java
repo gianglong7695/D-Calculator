@@ -9,11 +9,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dragon.app.calculator.R;
 import dragon.app.calculator.interfaces.ICallBack;
+import dragon.app.calculator.models.KeyEntity;
+
+import static dragon.app.calculator.data.OriginValue.KEY_0;
+import static dragon.app.calculator.data.OriginValue.KEY_1;
+import static dragon.app.calculator.data.OriginValue.KEY_2;
+import static dragon.app.calculator.data.OriginValue.KEY_3;
+import static dragon.app.calculator.data.OriginValue.KEY_4;
+import static dragon.app.calculator.data.OriginValue.KEY_5;
+import static dragon.app.calculator.data.OriginValue.KEY_6;
+import static dragon.app.calculator.data.OriginValue.KEY_7;
+import static dragon.app.calculator.data.OriginValue.KEY_8;
+import static dragon.app.calculator.data.OriginValue.KEY_9;
+import static dragon.app.calculator.data.OriginValue.KEY_BACKSPACE;
+import static dragon.app.calculator.data.OriginValue.TYPE_BAC;
+import static dragon.app.calculator.data.OriginValue.TYPE_CLR;
+import static dragon.app.calculator.data.OriginValue.TYPE_NUM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,8 +87,8 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
 
 
     public ICallBack iCallBack;
-
-
+    private String calculation = "";
+    private ArrayList<KeyEntity> listHistoryKey;
 
 
     @Override
@@ -87,6 +106,12 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.fragment_basic, container, false);
         ButterKnife.bind(this, v);
 
+        init();
+
+        return v;
+    }
+
+    public void init(){
         tv_0.setOnClickListener(this);
         tv_1.setOnClickListener(this);
         tv_2.setOnClickListener(this);
@@ -112,47 +137,47 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
         tv_comma.setOnClickListener(this);
 
 
-        return v;
+        listHistoryKey = new ArrayList<>();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_0:
-
+                saveKeys(KEY_0);
                 break;
             case R.id.tv_1:
-
+                saveKeys(KEY_1);
                 break;
             case R.id.tv_2:
-
+                saveKeys(KEY_2);
                 break;
             case R.id.tv_3:
-
+                saveKeys(KEY_3);
                 break;
             case R.id.tv_4:
-
+                saveKeys(KEY_4);
                 break;
             case R.id.tv_5:
-
+                saveKeys(KEY_5);
                 break;
             case R.id.tv_6:
-
+                saveKeys(KEY_6);
                 break;
             case R.id.tv_7:
-
+                saveKeys(KEY_7);
                 break;
             case R.id.tv_8:
-
+                saveKeys(KEY_8);
                 break;
             case R.id.tv_9:
-
+                saveKeys(KEY_9);
                 break;
             case R.id.iv_setting:
 
                 break;
             case R.id.iv_backspace:
-
+                saveKeys(KEY_BACKSPACE);
                 break;
             case R.id.tv_clear:
 
@@ -189,5 +214,29 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
                 break;
 
         }
+    }
+
+
+    public void saveKeys(KeyEntity key){
+//        ((MainActivity)getContext()).setKey(key);
+        listHistoryKey.add(key);
+
+
+
+
+
+        if(key.getType().equals(TYPE_NUM)){
+            calculation += key.getKeyName();
+            iCallBack.setResult(calculation);
+            iCallBack.setCalculation(calculation);
+        }else if(key.getType().equals(TYPE_BAC)){
+            calculation = calculation.substring(0, calculation.length() - 1);
+            iCallBack.setResult(calculation);
+            iCallBack.setCalculation(calculation);
+            Toast.makeText(getContext(), "sdfds", Toast.LENGTH_SHORT).show();
+        }else if(key.getType().equals(TYPE_CLR)){
+
+        }
+
     }
 }

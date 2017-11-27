@@ -6,4 +6,5 @@ package dragon.app.calculator.interfaces;
 
 public interface ICallBack {
     void setResult(String text);
+    void setCalculation(String text);
 }
