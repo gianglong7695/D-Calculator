@@ -9,14 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dragon.app.calculator.R;
 import dragon.app.calculator.adapters.ViewPagerAdapter;
 import dragon.app.calculator.interfaces.ICallBack;
-import dragon.app.calculator.models.KeyEntity;
 
 import static dragon.app.calculator.utils.Constants.STATUS_BAR_DELAY_HIDE;
 
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     private final Handler mHideHandler = new Handler();
     private ViewPagerAdapter mViewPagerAdapter;
-    private ArrayList<KeyEntity> listHistoryKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 
     public void initData() {
-        listHistoryKey = new ArrayList<>();
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         view_pager.setAdapter(mViewPagerAdapter);
         view_pager.setOnPageChangeListener(this);
@@ -60,22 +58,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         view_pager.setCurrentItem(0);
     }
 
-
-    public String getResult() {
-        return tv_result.getText().toString();
-    }
-
-    public String getCalculation(){
-        return tv_calculation.getText().toString();
-    }
-
-    public ArrayList<KeyEntity> getListKey() {
-        return listHistoryKey;
-    }
-
-    public void setKey(KeyEntity key) {
-        listHistoryKey.add(key);
-    }
 
     private void hide() {
         // Hide UI first
@@ -123,12 +105,62 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     @Override
-    public void setResult(String text) {
-        tv_result.setText(text);
+    public void setResult(String text, int resType) {
+        switch (resType) {
+            case R.string.type_num:
+                tv_result.setText(text);
+                break;
+            case R.string.type_bac:
+                tv_result.setText(text);
+                break;
+            case R.string.type_cle:
+                if (!tv_result.getText().equals("0")) {
+                    tv_result.setText("0");
+                    YoYo.with(Techniques.BounceInUp)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_result);
+                } else {
+                    tv_result.setText("0");
+                    YoYo.with(Techniques.Shake)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_result);
+                }
+
+                break;
+        }
+
     }
 
     @Override
-    public void setCalculation(String text) {
-        tv_calculation.setText(text);
+    public void setCalculation(String text, int resType) {
+        switch (resType) {
+            case R.string.type_num:
+                tv_calculation.setText(text);
+                break;
+            case R.string.type_bac:
+                tv_calculation.setText(text);
+                break;
+            case R.string.type_cle:
+                if (!tv_calculation.getText().equals("0")) {
+                    tv_calculation.setText("0");
+                    YoYo.with(Techniques.BounceInUp)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_calculation);
+                } else {
+                    tv_calculation.setText("0");
+                    YoYo.with(Techniques.Shake)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_calculation);
+                }
+                break;
+
+            case R.string.type_cal:
+                tv_calculation.setText(text);
+                break;
+        }
     }
 }

@@ -27,4 +27,15 @@
     <string name="seven">7</string>
     <string name="eight">8</string>
     <string name="nine">9</string>
+
+    <string name="type_num">number</string>
+    <string name="type_cal">calculation</string>
+    <string name="type_cle">clear</string>
+    <string name="type_bac">backspace</string>
+    <string name="type_set">setting</string>
+    <string name="type_res">result</string>
+    <string name="type_par">parenthesis</string>
+    <string name="type_min">minus</string>
+    <string name="type_com">comma</string>
+
 </resources>

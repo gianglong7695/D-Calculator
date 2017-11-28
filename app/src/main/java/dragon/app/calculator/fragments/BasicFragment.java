@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import dragon.app.calculator.R;
 import dragon.app.calculator.interfaces.ICallBack;
 import dragon.app.calculator.models.KeyEntity;
+import dragon.app.calculator.utils.Logs;
 
 import static dragon.app.calculator.data.OriginValue.KEY_0;
 import static dragon.app.calculator.data.OriginValue.KEY_1;
@@ -29,15 +30,18 @@ import static dragon.app.calculator.data.OriginValue.KEY_6;
 import static dragon.app.calculator.data.OriginValue.KEY_7;
 import static dragon.app.calculator.data.OriginValue.KEY_8;
 import static dragon.app.calculator.data.OriginValue.KEY_9;
+import static dragon.app.calculator.data.OriginValue.KEY_ADD;
 import static dragon.app.calculator.data.OriginValue.KEY_BACKSPACE;
-import static dragon.app.calculator.data.OriginValue.TYPE_BAC;
-import static dragon.app.calculator.data.OriginValue.TYPE_CLR;
-import static dragon.app.calculator.data.OriginValue.TYPE_NUM;
+import static dragon.app.calculator.data.OriginValue.KEY_DIV;
+import static dragon.app.calculator.data.OriginValue.KEY_EQUAL;
+import static dragon.app.calculator.data.OriginValue.KEY_MUL;
+import static dragon.app.calculator.data.OriginValue.KEY_PERSENT;
+import static dragon.app.calculator.data.OriginValue.KEY_SUB;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BasicFragment extends Fragment implements View.OnClickListener{
+public class BasicFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.tv_0)
     TextView tv_0;
     @BindView(R.id.tv_1)
@@ -88,7 +92,12 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
 
     public ICallBack iCallBack;
     private String calculation = "";
+    private String result = "";
     private ArrayList<KeyEntity> listHistoryKey;
+    private String num1 = "";
+    private String num2 = "";
+    private String type_cal= "";
+    private boolean isLastNum1 = false;
 
 
     @Override
@@ -111,7 +120,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
         return v;
     }
 
-    public void init(){
+    public void init() {
         tv_0.setOnClickListener(this);
         tv_1.setOnClickListener(this);
         tv_2.setOnClickListener(this);
@@ -142,63 +151,67 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tv_0:
-                saveKeys(KEY_0);
+                handlingKey(KEY_0);
                 break;
             case R.id.tv_1:
-                saveKeys(KEY_1);
+                handlingKey(KEY_1);
                 break;
             case R.id.tv_2:
-                saveKeys(KEY_2);
+                handlingKey(KEY_2);
                 break;
             case R.id.tv_3:
-                saveKeys(KEY_3);
+                handlingKey(KEY_3);
                 break;
             case R.id.tv_4:
-                saveKeys(KEY_4);
+                handlingKey(KEY_4);
                 break;
             case R.id.tv_5:
-                saveKeys(KEY_5);
+                handlingKey(KEY_5);
                 break;
             case R.id.tv_6:
-                saveKeys(KEY_6);
+                handlingKey(KEY_6);
                 break;
             case R.id.tv_7:
-                saveKeys(KEY_7);
+                handlingKey(KEY_7);
                 break;
             case R.id.tv_8:
-                saveKeys(KEY_8);
+                handlingKey(KEY_8);
                 break;
             case R.id.tv_9:
-                saveKeys(KEY_9);
+                handlingKey(KEY_9);
                 break;
             case R.id.iv_setting:
-
+                Toast.makeText(getContext(), "Setting!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.iv_backspace:
-                saveKeys(KEY_BACKSPACE);
+                handlingKey(KEY_BACKSPACE);
                 break;
             case R.id.tv_clear:
-
+                clear();
                 break;
             case R.id.tv_div:
-
+                handlingKey(KEY_DIV);
                 break;
             case R.id.tv_mul:
+                handlingKey(KEY_MUL);
 
                 break;
             case R.id.tv_sub:
+                handlingKey(KEY_SUB);
 
                 break;
             case R.id.tv_add:
-
-                break;
-            case R.id.tv_equal:
+                handlingKey(KEY_ADD);
 
                 break;
             case R.id.tv_percent:
+                handlingKey(KEY_PERSENT);
+                break;
 
+            case R.id.tv_equal:
+                handlingKey(KEY_EQUAL);
                 break;
             case R.id.tv_parenthesis_1:
 
@@ -217,26 +230,96 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     }
 
 
-    public void saveKeys(KeyEntity key){
-//        ((MainActivity)getContext()).setKey(key);
+    public void handlingKey(KeyEntity key) {
+        // Saving key to list history
         listHistoryKey.add(key);
 
+        switch (key.getResType()) {
+            case R.string.type_num:
+                if (!isLastNum1) {
+                    num1 += key.getKeyName();
+                } else {
+                    num2 += key.getKeyName();
+                }
 
 
+                calculation += key.getKeyName();
+                if(num2.equals("")){
+                    result += key.getKeyName();
+                }else{
+                    result = calcutate(num1, num2, type_cal);
+                }
+
+                iCallBack.setResult(result, R.string.type_num);
+                iCallBack.setCalculation(calculation, R.string.type_num);
+                break;
+            case R.string.type_bac:
+                if (calculation.length() > 1) {
+                    calculation = calculation.substring(0, calculation.length() - 1);
+                    iCallBack.setResult(calculation, R.string.type_bac);
+                    iCallBack.setCalculation(calculation, R.string.type_bac);
+                } else {
+                    iCallBack.setResult("0", R.string.type_bac);
+                    iCallBack.setCalculation("0", R.string.type_bac);
+                }
+                break;
+            case R.string.type_cal:
+                isLastNum1 = true;
+                type_cal = key.getKeyName();
 
 
-        if(key.getType().equals(TYPE_NUM)){
-            calculation += key.getKeyName();
-            iCallBack.setResult(calculation);
-            iCallBack.setCalculation(calculation);
-        }else if(key.getType().equals(TYPE_BAC)){
-            calculation = calculation.substring(0, calculation.length() - 1);
-            iCallBack.setResult(calculation);
-            iCallBack.setCalculation(calculation);
-            Toast.makeText(getContext(), "sdfds", Toast.LENGTH_SHORT).show();
-        }else if(key.getType().equals(TYPE_CLR)){
+                calculation += key.getKeyName();
+                iCallBack.setCalculation(calculation, R.string.type_cal);
+                break;
+            case R.string.type_res:
+                result = calcutate(num1, num2, type_cal);
+                calculation = result;
 
+                iCallBack.setResult(result, R.string.type_res);
+                iCallBack.setCalculation(calculation, R.string.type_res);
+                break;
         }
 
     }
+
+
+    public void clear() {
+        listHistoryKey = new ArrayList<>();
+        calculation = "";
+        result = "";
+        num1 = "";
+        num2 = "";
+
+        iCallBack.setResult("0", R.string.type_cle);
+        iCallBack.setCalculation("0", R.string.type_cle);
+    }
+
+
+    public String calcutate(String num1, String num2, String type_cal) {
+        String result = "";
+
+        try {
+            double n1 = Double.parseDouble(num1);
+            double n2 = Double.parseDouble(num2);
+
+
+            if (type_cal.equals("+")) {
+                result = String.valueOf(n1 + n2);
+            } else if (type_cal.equals("-")) {
+                result = String.valueOf(n1 - n2);
+            } else if (type_cal.equals("×")) {
+                result = String.valueOf(n1 * n2);
+            } else if (type_cal.equals("÷")) {
+                result = String.valueOf(n1 / n2);
+            } else if (type_cal.equals("%")) {
+                result = String.valueOf(n1 % n2);
+            }
+        } catch (Exception e) {
+            Logs.e(e.toString());
+        }
+
+
+        return result;
+    }
+
 }
