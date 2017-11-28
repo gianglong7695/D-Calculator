@@ -113,6 +113,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             case R.string.type_bac:
                 tv_result.setText(text);
                 break;
+            case R.string.type_com:
+                tv_result.setText(text);
             case R.string.type_cle:
                 if (!tv_result.getText().equals("0")) {
                     tv_result.setText("0");
@@ -149,6 +151,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             case R.string.type_bac:
                 tv_calculation.setText(text);
                 break;
+            case R.string.type_com:
+                tv_calculation.setText(text);
+                break;
             case R.string.type_cle:
                 if (!tv_calculation.getText().equals("0")) {
                     tv_calculation.setText("0");
@@ -175,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         .repeat(0)
                         .playOn(tv_calculation);
                 break;
+
         }
     }
 }

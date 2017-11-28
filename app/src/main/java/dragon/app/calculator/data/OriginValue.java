@@ -31,7 +31,7 @@ public class OriginValue {
     public static final KeyEntity KEY_9 = new KeyEntity("9", "9", R.string.type_num);
     public static final KeyEntity KEY_SETTING = new KeyEntity("setting", "setting", R.string.type_set);
     public static final KeyEntity KEY_BACKSPACE = new KeyEntity("backspace", "backspace", R.string.type_bac);
-    public static final KeyEntity KEY_CLEAR = new KeyEntity("clear", "clear", R.string.type_cle);
+    public static final KeyEntity KEY_CLEAR = new KeyEntity("C", "clear", R.string.type_cle);
     public static final KeyEntity KEY_DIV = new KeyEntity("÷", "/", R.string.type_cal);
     public static final KeyEntity KEY_MUL = new KeyEntity("×", "*", R.string.type_cal);
     public static final KeyEntity KEY_SUB = new KeyEntity("-", "-", R.string.type_cal);

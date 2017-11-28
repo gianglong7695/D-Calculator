@@ -32,6 +32,8 @@ import static dragon.app.calculator.data.OriginValue.KEY_8;
 import static dragon.app.calculator.data.OriginValue.KEY_9;
 import static dragon.app.calculator.data.OriginValue.KEY_ADD;
 import static dragon.app.calculator.data.OriginValue.KEY_BACKSPACE;
+import static dragon.app.calculator.data.OriginValue.KEY_CLEAR;
+import static dragon.app.calculator.data.OriginValue.KEY_COMMA;
 import static dragon.app.calculator.data.OriginValue.KEY_DIV;
 import static dragon.app.calculator.data.OriginValue.KEY_EQUAL;
 import static dragon.app.calculator.data.OriginValue.KEY_MUL;
@@ -96,7 +98,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     private ArrayList<KeyEntity> listHistoryKey;
     private String num1 = "";
     private String num2 = "";
-    private String type_cal= "";
+    private String type_cal = "";
     private boolean isLastNum1 = false;
 
 
@@ -116,6 +118,8 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         ButterKnife.bind(this, v);
 
         init();
+
+        Toast.makeText(getContext(), "đá", Toast.LENGTH_SHORT).show();
 
         return v;
     }
@@ -189,7 +193,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 handlingKey(KEY_BACKSPACE);
                 break;
             case R.id.tv_clear:
-                clear();
+                handlingKey(KEY_CLEAR);
                 break;
             case R.id.tv_div:
                 handlingKey(KEY_DIV);
@@ -223,7 +227,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.tv_comma:
-
+                handlingKey(KEY_COMMA);
                 break;
 
         }
@@ -244,9 +248,9 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
 
                 calculation += key.getKeyName();
-                if(num2.equals("")){
+                if (num2.equals("")) {
                     result += key.getKeyName();
-                }else{
+                } else {
                     result = calcutate(num1, num2, type_cal);
                 }
 
@@ -277,6 +281,22 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
                 iCallBack.setResult(result, R.string.type_res);
                 iCallBack.setCalculation(calculation, R.string.type_res);
+                break;
+
+            case R.string.comma:
+                calculation += key.getKeyName();
+                if (num2.equals("")) {
+                    result += key.getKeyName();
+                } else {
+                    result = calcutate(num1, num2, type_cal);
+                }
+                iCallBack.setCalculation(calculation, R.string.type_com);
+                iCallBack.setResult(result, R.string.type_com);
+
+                Toast.makeText(getContext(), "ađawa", Toast.LENGTH_SHORT).show();
+                break;
+            case R.string.clear:
+                clear();
                 break;
         }
 
