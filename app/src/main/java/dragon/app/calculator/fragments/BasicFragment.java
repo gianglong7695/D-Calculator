@@ -289,6 +289,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         result = "";
         num1 = "";
         num2 = "";
+        isLastNum1 = false;
 
         iCallBack.setResult("0", R.string.type_cle);
         iCallBack.setCalculation("0", R.string.type_cle);
@@ -319,7 +320,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         }
 
 
-        return result;
+        return result.indexOf(".") < 0 ? result : result.replaceAll("0*$", "").replaceAll("\\.$", "");
     }
 
 }
