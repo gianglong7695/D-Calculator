@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import dragon.app.calculator.R;
 import dragon.app.calculator.interfaces.ICallBack;
 import dragon.app.calculator.models.KeyEntity;
+import dragon.app.calculator.utils.Calculation;
 import dragon.app.calculator.utils.Logs;
 
 import static dragon.app.calculator.data.OriginValue.KEY_0;
@@ -96,10 +97,9 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     private String calculation = "";
     private String result = "";
     private ArrayList<KeyEntity> listHistoryKey;
-    private String num1 = "";
-    private String num2 = "";
-    private String type_cal = "";
-    private boolean isLastNum1 = false;
+    private String num = "";
+    private ArrayList<String> listNums = new ArrayList<>();
+    private ArrayList<String> listCals = new ArrayList<>();
 
 
     @Override
@@ -118,9 +118,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         ButterKnife.bind(this, v);
 
         init();
-
-        Toast.makeText(getContext(), "đá", Toast.LENGTH_SHORT).show();
-
         return v;
     }
 
@@ -187,7 +184,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 handlingKey(KEY_9);
                 break;
             case R.id.iv_setting:
-                Toast.makeText(getContext(), "Setting!", Toast.LENGTH_SHORT).show();
+                setting();
                 break;
             case R.id.iv_backspace:
                 handlingKey(KEY_BACKSPACE);
@@ -238,24 +235,37 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         // Saving key to list history
         listHistoryKey.add(key);
 
+
         switch (key.getResType()) {
             case R.string.type_num:
-                if (!isLastNum1) {
-                    num1 += key.getKeyName();
-                } else {
-                    num2 += key.getKeyName();
-                }
-
-
+                num += key.getKeyName();
                 calculation += key.getKeyName();
-                if (num2.equals("")) {
-                    result += key.getKeyName();
-                } else {
-                    result = calcutate(num1, num2, type_cal);
+
+                if(listHistoryKey.get(listHistoryKey.size()-1).getResType() == R.string.type_num){
+                    if(num.length() > 1){
+                        listNums.remove(listNums.size());
+                    }
+
+                    listNums.add(listCals.size(), num);
                 }
 
+                result = calcutate();
                 iCallBack.setResult(result, R.string.type_num);
                 iCallBack.setCalculation(calculation, R.string.type_num);
+                break;
+            case R.string.type_cal:
+                if(!num.equals("")){
+                    listCals.add(key.getKeyValue());
+                    num = "";
+
+
+                    calculation += key.getKeyName();
+                    iCallBack.setCalculation(calculation, R.string.type_cal);
+
+
+
+                }
+
                 break;
             case R.string.type_bac:
                 if (calculation.length() > 1) {
@@ -267,80 +277,112 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                     iCallBack.setCalculation("0", R.string.type_bac);
                 }
                 break;
-            case R.string.type_cal:
-                isLastNum1 = true;
-                type_cal = key.getKeyName();
-
-
-                calculation += key.getKeyName();
-                iCallBack.setCalculation(calculation, R.string.type_cal);
-                break;
             case R.string.type_res:
-                result = calcutate(num1, num2, type_cal);
+//                result = calcutate(num1, num2, type_cal);
                 calculation = result;
 
                 iCallBack.setResult(result, R.string.type_res);
                 iCallBack.setCalculation(calculation, R.string.type_res);
                 break;
 
-            case R.string.comma:
+            case R.string.type_com:
                 calculation += key.getKeyName();
-                if (num2.equals("")) {
-                    result += key.getKeyName();
-                } else {
-                    result = calcutate(num1, num2, type_cal);
-                }
+//                if (num2.equals("")) {
+//                    result += key.getKeyName();
+//                } else {
+//                    result = calcutate(num1, num2, type_cal);
+//                }
                 iCallBack.setCalculation(calculation, R.string.type_com);
-                iCallBack.setResult(result, R.string.type_com);
 
-                Toast.makeText(getContext(), "ađawa", Toast.LENGTH_SHORT).show();
                 break;
-            case R.string.clear:
+            case R.string.type_cle:
                 clear();
                 break;
         }
+
+
+        checkLogs();
 
     }
 
 
     public void clear() {
         listHistoryKey = new ArrayList<>();
+        listNums = new ArrayList<>();
+        listCals = new ArrayList<>();
         calculation = "";
         result = "";
-        num1 = "";
-        num2 = "";
-        isLastNum1 = false;
+        num = "";
 
         iCallBack.setResult("0", R.string.type_cle);
         iCallBack.setCalculation("0", R.string.type_cle);
     }
 
 
-    public String calcutate(String num1, String num2, String type_cal) {
-        String result = "";
+    public String calcutate() {
+        double result = 0;
 
         try {
-            double n1 = Double.parseDouble(num1);
-            double n2 = Double.parseDouble(num2);
+            result = Double.parseDouble(listNums.get(0));
 
+            for (int i = 0; i < listCals.size(); i++) {
+                if(listCals.get(i).equals("+")){
+                    result += Double.parseDouble(listNums.get(i+1));
+                }
 
-            if (type_cal.equals("+")) {
-                result = String.valueOf(n1 + n2);
-            } else if (type_cal.equals("-")) {
-                result = String.valueOf(n1 - n2);
-            } else if (type_cal.equals("×")) {
-                result = String.valueOf(n1 * n2);
-            } else if (type_cal.equals("÷")) {
-                result = String.valueOf(n1 / n2);
-            } else if (type_cal.equals("%")) {
-                result = String.valueOf(n1 % n2);
+                if(listCals.get(i).equals("-")){
+                    result -= Double.parseDouble(listNums.get(i+1));
+                }
+
+                if(listCals.get(i).equals("*")){
+                    result *= Double.parseDouble(listNums.get(i+1));
+                }
+
+                if(listCals.get(i).equals("/")){
+                    result /= Double.parseDouble(listNums.get(i+1));
+                }
+
+                if(listCals.get(i).equals("%")){
+                    result %= Double.parseDouble(listNums.get(i+1));
+                }
             }
+
+
+
         } catch (Exception e) {
             Logs.e(e.toString());
         }
 
 
-        return result.indexOf(".") < 0 ? result : result.replaceAll("0*$", "").replaceAll("\\.$", "");
+        return Calculation.round(String.valueOf(result));
     }
+
+    public void setting() {
+        Toast.makeText(getContext(), "Setting", Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void checkLogs(){
+        String str = "";
+        Logs.e("----------------------------------------------------------------------------------");
+
+        //Log numbers
+//        Logs.e(listNums.size());
+        for (int i = 0; i < listNums.size(); i++) {
+            str += listNums.get(i) + "  ";
+        }
+        Logs.e(str);
+
+
+        //Log cals
+        str = "";
+//        Logs.e(listCals.size());
+        for (int i = 0; i < listCals.size(); i++) {
+            str += "  " + listCals.get(i);
+        }
+        Logs.e(str);
+    }
+
+
 
 }
