@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,13 +8,13 @@
     android:padding="@dimen/default_space"
     tools:context="dragon.app.calculator.fragments.BasicFragment">
 
-    <GridLayout
+    <android.support.v7.widget.GridLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="@dimen/default_space"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        app:orientation="vertical">
 
         <ImageView
             android:id="@+id/iv_setting"
@@ -21,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:src="@drawable/ic_setting_white" />
+            android:src="@drawable/ic_setting_white"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_percent"
@@ -30,8 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/percent" />
+            android:text="@string/percent"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_7"
@@ -39,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/seven" />
+            android:text="@string/seven"
+            app:layout_rowWeight="1" />
 
 
         <TextView
@@ -49,8 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/four" />
+            android:text="@string/four"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_1"
@@ -58,27 +59,27 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/one" />
+            android:text="@string/one"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_plus_minus"
             style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:text="@string/plus_minus" />
+            android:text="@string/plus_minus"
+            app:layout_rowWeight="1" />
 
 
-    </GridLayout>
+    </android.support.v7.widget.GridLayout>
 
-    <GridLayout
+    <android.support.v7.widget.GridLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="@dimen/default_space"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        app:orientation="vertical">
 
         <ImageView
             android:id="@+id/iv_backspace"
@@ -86,8 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:src="@drawable/ic_back_white" />
+            android:src="@drawable/ic_back_white"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_parenthesis_1"
@@ -95,8 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/parenthesis_1" />
+            android:text="@string/parenthesis_1"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_8"
@@ -104,8 +105,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/eight" />
+            android:text="@string/eight"
+            app:layout_rowWeight="1" />
 
 
         <TextView
@@ -114,8 +115,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/five" />
+            android:text="@string/five"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_2"
@@ -123,27 +124,27 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/two" />
+            android:text="@string/two"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_0"
             style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:text="@string/zero" />
+            android:text="@string/zero"
+            app:layout_rowWeight="1" />
 
 
-    </GridLayout>
+    </android.support.v7.widget.GridLayout>
 
-    <GridLayout
+    <android.support.v7.widget.GridLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="@dimen/default_space"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        app:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_clear"
@@ -151,8 +152,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/clear" />
+            android:text="@string/clear"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_parenthesis_2"
@@ -160,8 +161,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/parenthesis_2" />
+            android:text="@string/parenthesis_2"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_9"
@@ -169,8 +170,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/nine" />
+            android:text="@string/nine"
+            app:layout_rowWeight="1" />
 
 
         <TextView
@@ -179,8 +180,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/six" />
+            android:text="@string/six"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_3"
@@ -188,27 +189,27 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/three" />
+            android:text="@string/three"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_comma"
             style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_rowWeight="1"
-            android:text="@string/comma" />
+            android:text="@string/comma"
+            app:layout_rowWeight="1" />
 
 
-    </GridLayout>
+    </android.support.v7.widget.GridLayout>
 
-    <GridLayout
+    <android.support.v7.widget.GridLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="@dimen/default_space"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        app:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_div"
@@ -216,8 +217,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/div" />
+            android:text="@string/div"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_mul"
@@ -225,8 +226,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/mul" />
+            android:text="@string/mul"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_sub"
@@ -234,8 +235,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/sub" />
+            android:text="@string/sub"
+            app:layout_rowWeight="1" />
 
 
         <TextView
@@ -244,18 +245,18 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:layout_rowWeight="1"
-            android:text="@string/add" />
+            android:text="@string/add"
+            app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tv_equal"
             style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_rowWeight="2.075"
             android:paddingBottom="5dp"
-            android:text="@string/equal" />
+            android:text="@string/equal"
+            app:layout_rowWeight="2.075" />
 
-    </GridLayout>
+    </android.support.v7.widget.GridLayout>
 
 </LinearLayout>
