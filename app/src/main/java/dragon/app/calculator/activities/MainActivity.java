@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         initData();
 
-
+//        Utils.MathSetText("<body>x<sub>2</sub></body>", tv_calculation);
     }
 
 

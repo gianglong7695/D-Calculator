@@ -11,7 +11,7 @@
     <string name="mul">×</string>
     <string name="div">÷</string>
     <string name="equal">=</string>
-    <string name="comma">,</string>
+    <string name="comma">.</string>
     <string name="clear">C</string>
     <string name="percent">%</string>
     <string name="plus_minus">+/-</string>
@@ -37,5 +37,27 @@
     <string name="type_par">parenthesis</string>
     <string name="type_min">minus</string>
     <string name="type_com">comma</string>
+
+
+    <!-- Advance calculation -->
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">number</string>
+    <string name="cotg">number</string>
+
+
+    <string name="pi">π</string>
+    <string name="mathematical_constant">e</string>
+    <string name="squared"><body>x<sub>2</sub></body></string>
+    <string name="cubed">x^3</string>
+    <string name="exponent">x^n</string>
+    <string name="x_power_minus_1">x^-1</string>
+    <!--<string name="sin">log</string>-->
+    <!--<string name="sin">ln</string>-->
+    <!--<string name="sin">log</string>-->
+    <!--<string name="sin">number</string>-->
+    <!--<string name="sin">number</string>-->
+    <!--<string name="sin">number</string>-->
+    <!--<string name="sin">number</string>-->
 
 </resources>

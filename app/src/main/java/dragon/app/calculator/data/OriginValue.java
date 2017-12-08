@@ -40,8 +40,8 @@ public class OriginValue {
     public static final KeyEntity KEY_EQUAL = new KeyEntity("=", "=", R.string.type_res);
     public static final KeyEntity KEY_PARENTHESIS_1 = new KeyEntity("(", "(", R.string.type_par);
     public static final KeyEntity KEY_PARENTHESIS_2 = new KeyEntity(")", ")", R.string.type_par);
-    public static final KeyEntity KEY_PLUS_MINUS = new KeyEntity("+/-", "+/-", R.string.type_min);
-    public static final KeyEntity KEY_COMMA = new KeyEntity(",", ",", R.string.type_com);
+    public static final KeyEntity KEY_PLUS_MINUS = new KeyEntity("+/-", "-", R.string.type_min);
+    public static final KeyEntity KEY_COMMA = new KeyEntity(".", ".", R.string.type_com);
 
 
 

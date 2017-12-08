@@ -39,7 +39,9 @@ import static dragon.app.calculator.data.OriginValue.KEY_DIV;
 import static dragon.app.calculator.data.OriginValue.KEY_EQUAL;
 import static dragon.app.calculator.data.OriginValue.KEY_MUL;
 import static dragon.app.calculator.data.OriginValue.KEY_PERSENT;
+import static dragon.app.calculator.data.OriginValue.KEY_PLUS_MINUS;
 import static dragon.app.calculator.data.OriginValue.KEY_SUB;
+import static java.lang.Double.parseDouble;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -221,7 +223,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.tv_plus_minus:
-
+                handlingKey(KEY_PLUS_MINUS);
                 break;
             case R.id.tv_comma:
                 handlingKey(KEY_COMMA);
@@ -241,9 +243,9 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 num += key.getKeyName();
                 calculation += key.getKeyName();
 
-                if(listHistoryKey.get(listHistoryKey.size()-1).getResType() == R.string.type_num){
-                    if(num.length() > 1){
-                        listNums.remove(listNums.size());
+                if (listHistoryKey.get(listHistoryKey.size() - 1).getResType() == R.string.type_num) {
+                    if (num.length() > 1) {
+                        listNums.remove(listNums.size() - 1);
                     }
 
                     listNums.add(listCals.size(), num);
@@ -254,14 +256,13 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 iCallBack.setCalculation(calculation, R.string.type_num);
                 break;
             case R.string.type_cal:
-                if(!num.equals("")){
+                if (!num.equals("")) {
                     listCals.add(key.getKeyValue());
                     num = "";
 
 
                     calculation += key.getKeyName();
                     iCallBack.setCalculation(calculation, R.string.type_cal);
-
 
 
                 }
@@ -278,7 +279,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.string.type_res:
-//                result = calcutate(num1, num2, type_cal);
                 calculation = result;
 
                 iCallBack.setResult(result, R.string.type_res);
@@ -287,16 +287,22 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
             case R.string.type_com:
                 calculation += key.getKeyName();
-//                if (num2.equals("")) {
-//                    result += key.getKeyName();
-//                } else {
-//                    result = calcutate(num1, num2, type_cal);
-//                }
+                num += key.getKeyValue();
+
                 iCallBack.setCalculation(calculation, R.string.type_com);
 
                 break;
             case R.string.type_cle:
                 clear();
+                break;
+
+            case R.string.type_min:
+//                if (listNums.size() > 1) {
+//                    String tmp = listNums.get(listNums.size()-1);
+//                    listNums.add(tmp);
+//                }
+
+
                 break;
         }
 
@@ -321,30 +327,52 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
     public String calcutate() {
         double result = 0;
+        String str_result = "";
 
         try {
-            result = Double.parseDouble(listNums.get(0));
+            result = parseDouble(listNums.get(0));
 
             for (int i = 0; i < listCals.size(); i++) {
-                if(listCals.get(i).equals("+")){
-                    result += Double.parseDouble(listNums.get(i+1));
+                if (listCals.get(i).equals("+")) {
+                    result += Double.parseDouble(listNums.get(i + 1));
                 }
 
-                if(listCals.get(i).equals("-")){
-                    result -= Double.parseDouble(listNums.get(i+1));
+                if (listCals.get(i).equals("-")) {
+                    result -= Double.parseDouble(listNums.get(i + 1));
                 }
 
-                if(listCals.get(i).equals("*")){
-                    result *= Double.parseDouble(listNums.get(i+1));
+                if (listCals.get(i).equals("*")) {
+                    result *= Double.parseDouble(listNums.get(i + 1));
                 }
 
-                if(listCals.get(i).equals("/")){
-                    result /= Double.parseDouble(listNums.get(i+1));
+                if (listCals.get(i).equals("/")) {
+                    result /= Double.parseDouble(listNums.get(i + 1));
                 }
 
-                if(listCals.get(i).equals("%")){
-                    result %= Double.parseDouble(listNums.get(i+1));
+                if (listCals.get(i).equals("%")) {
+                    result %= Double.parseDouble(listNums.get(i + 1));
                 }
+
+//                if (listCals.get(i).equals("+")) {
+//                    str_result = str_result + "+" + listNums.get(i + 1);
+//                }
+//
+//                if (listCals.get(i).equals("-")) {
+//                    str_result = str_result + "-" + listNums.get(i + 1);
+//                }
+//
+//                if (listCals.get(i).equals("*")) {
+//                    str_result = str_result + "*" + listNums.get(i + 1);
+//                }
+//
+//                if (listCals.get(i).equals("/")) {
+//                    str_result = str_result + "/" + listNums.get(i + 1);
+//                }
+//
+//                if (listCals.get(i).equals("%")) {
+//                    str_result = str_result + "%" + listNums.get(i + 1);
+//                }
+
             }
 
 
@@ -362,7 +390,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    public void checkLogs(){
+    public void checkLogs() {
         String str = "";
         Logs.e("----------------------------------------------------------------------------------");
 
@@ -382,7 +410,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         }
         Logs.e(str);
     }
-
 
 
 }

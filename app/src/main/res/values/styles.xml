@@ -32,14 +32,14 @@
     <style name="Default_text">
         <item name="android:textSize">35sp</item>
         <item name="android:textColor">@color/white</item>/>
-        <!--<item name="android:background">@drawable/background_button</item>-->
+        <item name="android:background">@drawable/background_button</item>
         <item name="android:padding">10dp</item>
         <item name="android:gravity">center</item>
     </style>
 
 
     <style name="Default_img">
-        <!--<item name="android:background">@drawable/background_button</item>-->
+        <item name="android:background">@drawable/background_button</item>
         <item name="android:padding">20dp</item>
 
     </style>

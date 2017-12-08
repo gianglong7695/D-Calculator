@@ -1,0 +1,263 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal"
+    android:padding="@dimen/default_space"
+    tools:context="dragon.app.calculator.fragments.AdvanceFragment">
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:visibility="visible"
+        app:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            style="@style/Default_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:src="@drawable/ic_setting_white"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_percent"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/percent"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_7"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/seven"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            android:id="@+id/tv_4"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/four"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_1"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/one"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_plus_minus"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/plus_minus"
+            app:layout_rowWeight="1" />
+
+
+    </android.support.v7.widget.GridLayout>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:visibility="visible"
+        app:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_backspace"
+            style="@style/Default_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:src="@drawable/ic_back_white"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_parenthesis_1"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/parenthesis_1"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_8"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/eight"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            android:id="@+id/tv_5"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/five"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/two"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_0"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/zero"
+            app:layout_rowWeight="1" />
+
+
+    </android.support.v7.widget.GridLayout>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:visibility="visible"
+        app:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_clear"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/clear"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_parenthesis_2"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/parenthesis_2"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_9"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/nine"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            android:id="@+id/tv_6"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/six"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_3"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/three"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_comma"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="@string/comma"
+            app:layout_rowWeight="1" />
+
+
+    </android.support.v7.widget.GridLayout>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/default_space"
+        android:layout_weight="1"
+        android:visibility="visible"
+        app:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_div"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/div"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_mul"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/mul"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_sub"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/sub"
+            app:layout_rowWeight="1" />
+
+
+        <TextView
+            android:id="@+id/tv_add"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/default_space"
+            android:text="@string/add"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/tv_equal"
+            style="@style/Default_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="5dp"
+            android:text="@string/equal"
+            app:layout_rowWeight="2.075" />
+
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>
+
