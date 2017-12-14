@@ -332,6 +332,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         try {
             result = parseDouble(listNums.get(0));
 
+
             for (int i = 0; i < listCals.size(); i++) {
                 if (listCals.get(i).equals("+")) {
                     result += Double.parseDouble(listNums.get(i + 1));
@@ -352,6 +353,9 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 if (listCals.get(i).equals("%")) {
                     result %= Double.parseDouble(listNums.get(i + 1));
                 }
+
+
+
 
 //                if (listCals.get(i).equals("+")) {
 //                    str_result = str_result + "+" + listNums.get(i + 1);

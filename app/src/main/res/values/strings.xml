@@ -42,8 +42,8 @@
     <!-- Advance calculation -->
     <string name="sin">sin</string>
     <string name="cos">cos</string>
-    <string name="tan">number</string>
-    <string name="cotg">number</string>
+    <string name="tan">tan</string>
+    <string name="cotg">sin^-1</string>
 
 
     <string name="pi">π</string>

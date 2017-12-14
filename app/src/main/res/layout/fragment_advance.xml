@@ -16,13 +16,13 @@
         android:visibility="visible"
         app:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_setting"
-            style="@style/Default_img"
+        <TextView
+            android:id="@+id/tv_sin"
+            style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:src="@drawable/ic_setting_white"
+            android:text="@string/sin"
             app:layout_rowWeight="1" />
 
         <TextView
@@ -81,13 +81,13 @@
         android:visibility="visible"
         app:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_backspace"
-            style="@style/Default_img"
+        <TextView
+            android:id="@+id/tv_cos"
+            style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:src="@drawable/ic_back_white"
+            android:text="@string/cos"
             app:layout_rowWeight="1" />
 
         <TextView
@@ -147,12 +147,12 @@
         app:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_clear"
+            android:id="@+id/tv_tan"
             style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/default_space"
-            android:text="@string/clear"
+            android:text="@string/tan"
             app:layout_rowWeight="1" />
 
         <TextView
@@ -212,7 +212,7 @@
         app:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_div"
+            android:id="@+id/tv_cotg"
             style="@style/Default_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
