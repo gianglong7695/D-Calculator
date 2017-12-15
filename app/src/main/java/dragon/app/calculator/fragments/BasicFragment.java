@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.mariuszgromada.math.mxparser.Expression;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -41,7 +43,6 @@ import static dragon.app.calculator.data.OriginValue.KEY_MUL;
 import static dragon.app.calculator.data.OriginValue.KEY_PERSENT;
 import static dragon.app.calculator.data.OriginValue.KEY_PLUS_MINUS;
 import static dragon.app.calculator.data.OriginValue.KEY_SUB;
-import static java.lang.Double.parseDouble;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -307,7 +308,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         }
 
 
-        checkLogs();
+//        checkLogs();
 
     }
 
@@ -327,67 +328,17 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
     public String calcutate() {
         double result = 0;
-        String str_result = "";
-
+        String str_result = calculation;
+        str_result = str_result.replace('×', '*');
+        str_result = str_result.replace('÷', '/');
         try {
-            result = parseDouble(listNums.get(0));
-
-
-            for (int i = 0; i < listCals.size(); i++) {
-                if (listCals.get(i).equals("+")) {
-                    result += Double.parseDouble(listNums.get(i + 1));
-                }
-
-                if (listCals.get(i).equals("-")) {
-                    result -= Double.parseDouble(listNums.get(i + 1));
-                }
-
-                if (listCals.get(i).equals("*")) {
-                    result *= Double.parseDouble(listNums.get(i + 1));
-                }
-
-                if (listCals.get(i).equals("/")) {
-                    result /= Double.parseDouble(listNums.get(i + 1));
-                }
-
-                if (listCals.get(i).equals("%")) {
-                    result %= Double.parseDouble(listNums.get(i + 1));
-                }
-
-
-
-
-//                if (listCals.get(i).equals("+")) {
-//                    str_result = str_result + "+" + listNums.get(i + 1);
-//                }
-//
-//                if (listCals.get(i).equals("-")) {
-//                    str_result = str_result + "-" + listNums.get(i + 1);
-//                }
-//
-//                if (listCals.get(i).equals("*")) {
-//                    str_result = str_result + "*" + listNums.get(i + 1);
-//                }
-//
-//                if (listCals.get(i).equals("/")) {
-//                    str_result = str_result + "/" + listNums.get(i + 1);
-//                }
-//
-//                if (listCals.get(i).equals("%")) {
-//                    str_result = str_result + "%" + listNums.get(i + 1);
-//                }
-
-            }
-
-
-
+            result = Calculation.caculate(str_result);
         } catch (Exception e) {
             Logs.e(e.toString());
         }
-
-
         return Calculation.round(String.valueOf(result));
     }
+
 
     public void setting() {
         Toast.makeText(getContext(), "Setting", Toast.LENGTH_SHORT).show();

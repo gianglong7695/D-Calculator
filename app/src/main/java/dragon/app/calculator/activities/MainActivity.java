@@ -6,8 +6,13 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.Layout;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -47,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         initData();
 
 //        Utils.MathSetText("<body>x<sub>2</sub></body>", tv_calculation);
+
+
     }
 
 
@@ -138,7 +145,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         .repeat(0)
                         .playOn(tv_result);
                 break;
+
         }
+
+
+
 
     }
 
@@ -182,5 +193,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 break;
 
         }
+
     }
 }

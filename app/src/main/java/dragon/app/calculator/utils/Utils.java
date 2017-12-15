@@ -17,4 +17,5 @@ public class Utils {
         }
 //        textView.setText(Html.fromHtml(txt));
     }
+
 }
