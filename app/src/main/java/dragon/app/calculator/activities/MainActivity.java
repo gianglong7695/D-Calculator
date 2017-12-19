@@ -139,18 +139,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 break;
             case R.string.type_res:
-                if(tv_result.length() > 0){
+                if(text.length() > 0){
                     tv_result.setText(text);
                     YoYo.with(Techniques.BounceInUp)
                             .duration(500)
                             .repeat(0)
-                            .playOn(tv_calculation);
+                            .playOn(tv_result);
                 }else{
                     tv_result.setText("0");
                     YoYo.with(Techniques.Shake)
                             .duration(500)
                             .repeat(0)
-                            .playOn(tv_calculation);
+                            .playOn(tv_result);
                 }
                 break;
 
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 tv_calculation.setText(text);
                 break;
             case R.string.type_res:
-                if(tv_calculation.length() > 0){
+                if(text.length() > 0){
                     tv_calculation.setText(text);
                     YoYo.with(Techniques.BounceInUp)
                             .duration(500)

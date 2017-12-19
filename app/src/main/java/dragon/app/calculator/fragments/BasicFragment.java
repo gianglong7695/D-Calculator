@@ -40,6 +40,8 @@ import static dragon.app.calculator.data.OriginValue.KEY_COMMA;
 import static dragon.app.calculator.data.OriginValue.KEY_DIV;
 import static dragon.app.calculator.data.OriginValue.KEY_EQUAL;
 import static dragon.app.calculator.data.OriginValue.KEY_MUL;
+import static dragon.app.calculator.data.OriginValue.KEY_PARENTHESIS_1;
+import static dragon.app.calculator.data.OriginValue.KEY_PARENTHESIS_2;
 import static dragon.app.calculator.data.OriginValue.KEY_PERSENT;
 import static dragon.app.calculator.data.OriginValue.KEY_PLUS_MINUS;
 import static dragon.app.calculator.data.OriginValue.KEY_SUB;
@@ -103,6 +105,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     private String num = "";
     private ArrayList<String> listNums = new ArrayList<>();
     private ArrayList<String> listCals = new ArrayList<>();
+    private boolean isNumMinus = false;
 
 
     @Override
@@ -241,20 +244,26 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
         switch (key.getResType()) {
             case R.string.type_num:
-                num += key.getKeyName();
-                calculation += key.getKeyName();
+                if (!key.equals(KEY_0) || !listHistoryKey.get(listHistoryKey.size() - 1).equals(key)) {
+                    num += key.getKeyName();
+                    calculation += key.getKeyName();
 
-                if (listHistoryKey.get(listHistoryKey.size() - 1).getResType() == R.string.type_num) {
-                    if (num.length() > 1) {
-                        listNums.remove(listNums.size() - 1);
+                    if (listHistoryKey.get(listHistoryKey.size() - 1).getResType() == R.string.type_num) {
+                        if (num.replace(KEY_PLUS_MINUS.getKeyValue(), "").length() > 1) {
+                            listNums.remove(listNums.size() - 1);
+                        }
+
+
+                        listNums.add(listCals.size(), num);
+
                     }
 
-                    listNums.add(listCals.size(), num);
+                    result = calcutate();
+                    iCallBack.setResult(result, R.string.type_num);
+                    iCallBack.setCalculation(calculation, R.string.type_num);
                 }
 
-                result = calcutate();
-                iCallBack.setResult(result, R.string.type_num);
-                iCallBack.setCalculation(calculation, R.string.type_num);
+
                 break;
             case R.string.type_cal:
                 if (!num.equals("")) {
@@ -297,21 +306,19 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.string.type_min:
+
+
                 if (listNums.size() > 0) {
-//                    if(listHistoryKey.get(listHistoryKey.size()-1).getResType() != R.string.type_cal){
-//                        String tmp = listNums.get(listNums.size() - 1);
-//                        listNums.remove(listNums.size() - 1);
-//                        listNums.add(key.getKeyValue() + tmp);
-//
-//
-//                        calculation = getCalculation();
-//                    }else{
-//                        num = key.getKeyValue() + num;
-//                        calculation += key.getKeyValue();
-//
-//
-//                    }
-                    num = key.getKeyValue() + num;
+
+
+                    if(num.contains(KEY_PLUS_MINUS.getKeyValue())){
+                        calculation = calculation.substring(0, calculation.length() - 1);
+                        num = num.substring(1, num.length());
+                    }else{
+                        calculation += key.getKeyValue();
+                        num = key.getKeyValue();
+                    }
+
 
                 } else {
                     if (calculation.length() > 0) {
@@ -324,7 +331,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
 
                 iCallBack.setCalculation(calculation, R.string.type_min);
-                Logs.e(getCalculation());
 
                 break;
         }
@@ -350,9 +356,12 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
     public String calcutate() {
         double result = 0;
-        String str_result = calculation;
+        String str_result = getCalculation();
         str_result = str_result.replace('×', '*');
         str_result = str_result.replace('÷', '/');
+
+
+        Logs.e("The calculation to calculate is : " + str_result);
 
 
         try {
@@ -399,21 +408,27 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
             try {
                 for (int i = 0; i < listCals.size(); i++) {
+                    String valueNumber = listNums.get(i + 1);
+                    if (valueNumber.contains(KEY_PLUS_MINUS.getKeyValue())) {
+                        valueNumber = KEY_PARENTHESIS_1.getKeyValue() + valueNumber + KEY_PARENTHESIS_2.getKeyValue();
+                    }
+
 
                     if (listCals.get(i).equals("+")) {
-                        mCaculation += "+" + listNums.get(i + 1);
+                        mCaculation += "+" + valueNumber;
+
                     }
 
                     if (listCals.get(i).equals("-")) {
-                        mCaculation += "-" + listNums.get(i + 1);
+                        mCaculation += "-" + valueNumber;
                     }
 
                     if (listCals.get(i).equals("*")) {
-                        mCaculation += "×" + listNums.get(i + 1);
+                        mCaculation += "×" + valueNumber;
                     }
 
                     if (listCals.get(i).equals("/")) {
-                        mCaculation += "÷" + listNums.get(i + 1);
+                        mCaculation += "÷" + valueNumber;
                     }
 
 
