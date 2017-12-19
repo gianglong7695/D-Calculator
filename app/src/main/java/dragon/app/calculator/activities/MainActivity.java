@@ -139,12 +139,21 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 break;
             case R.string.type_res:
-                tv_result.setText(text);
-                YoYo.with(Techniques.BounceInUp)
-                        .duration(500)
-                        .repeat(0)
-                        .playOn(tv_result);
+                if(tv_result.length() > 0){
+                    tv_result.setText(text);
+                    YoYo.with(Techniques.BounceInUp)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_calculation);
+                }else{
+                    tv_result.setText("0");
+                    YoYo.with(Techniques.Shake)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_calculation);
+                }
                 break;
+
 
         }
 
@@ -185,11 +194,24 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 tv_calculation.setText(text);
                 break;
             case R.string.type_res:
+                if(tv_calculation.length() > 0){
+                    tv_calculation.setText(text);
+                    YoYo.with(Techniques.BounceInUp)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_calculation);
+                }else{
+                    tv_calculation.setText("0");
+                    YoYo.with(Techniques.Shake)
+                            .duration(500)
+                            .repeat(0)
+                            .playOn(tv_calculation);
+                }
+
+
+                break;
+            case R.string.type_min:
                 tv_calculation.setText(text);
-                YoYo.with(Techniques.BounceInUp)
-                        .duration(500)
-                        .repeat(0)
-                        .playOn(tv_calculation);
                 break;
 
         }

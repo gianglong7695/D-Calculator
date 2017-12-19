@@ -265,7 +265,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                     calculation += key.getKeyName();
                     iCallBack.setCalculation(calculation, R.string.type_cal);
 
-
                 }
 
                 break;
@@ -298,17 +297,40 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.string.type_min:
-//                if (listNums.size() > 1) {
-//                    String tmp = listNums.get(listNums.size()-1);
-//                    listNums.add(tmp);
-//                }
+                if (listNums.size() > 0) {
+//                    if(listHistoryKey.get(listHistoryKey.size()-1).getResType() != R.string.type_cal){
+//                        String tmp = listNums.get(listNums.size() - 1);
+//                        listNums.remove(listNums.size() - 1);
+//                        listNums.add(key.getKeyValue() + tmp);
+//
+//
+//                        calculation = getCalculation();
+//                    }else{
+//                        num = key.getKeyValue() + num;
+//                        calculation += key.getKeyValue();
+//
+//
+//                    }
+                    num = key.getKeyValue() + num;
 
+                } else {
+                    if (calculation.length() > 0) {
+                        calculation = "";
+                    } else {
+                        calculation += key.getKeyValue();
+
+                    }
+                }
+
+
+                iCallBack.setCalculation(calculation, R.string.type_min);
+                Logs.e(getCalculation());
 
                 break;
         }
 
 
-//        checkLogs();
+        checkLogs();
 
     }
 
@@ -331,6 +353,8 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         String str_result = calculation;
         str_result = str_result.replace('×', '*');
         str_result = str_result.replace('÷', '/');
+
+
         try {
             result = Calculation.caculate(str_result);
         } catch (Exception e) {
@@ -364,6 +388,44 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
             str += "  " + listCals.get(i);
         }
         Logs.e(str);
+    }
+
+
+    public String getCalculation() {
+        String mCaculation = "";
+        if (listNums.size() > 0) {
+            mCaculation = listNums.get(0);
+
+
+            try {
+                for (int i = 0; i < listCals.size(); i++) {
+
+                    if (listCals.get(i).equals("+")) {
+                        mCaculation += "+" + listNums.get(i + 1);
+                    }
+
+                    if (listCals.get(i).equals("-")) {
+                        mCaculation += "-" + listNums.get(i + 1);
+                    }
+
+                    if (listCals.get(i).equals("*")) {
+                        mCaculation += "×" + listNums.get(i + 1);
+                    }
+
+                    if (listCals.get(i).equals("/")) {
+                        mCaculation += "÷" + listNums.get(i + 1);
+                    }
+
+
+                }
+            } catch (Exception e) {
+                Logs.e(e.getMessage().toString());
+            }
+
+
+        }
+
+        return mCaculation;
     }
 
 

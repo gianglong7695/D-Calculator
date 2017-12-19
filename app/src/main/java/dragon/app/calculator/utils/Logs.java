@@ -12,8 +12,8 @@ public class Logs {
     public static void d(String message) {
         StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[1];
         if (DEBUG) {
-            Log.d(stackTraceElement.getFileName() + " in " + stackTraceElement.getMethodName() +
-                    " at line " + stackTraceElement.getLineNumber() , message);
+            Log.d(stackTraceElement.getFileName() + "/" + stackTraceElement.getMethodName() +
+                    "/" + stackTraceElement.getLineNumber(), message);
         }
 
     }
@@ -21,8 +21,8 @@ public class Logs {
     public static void w(String message) {
         StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[1];
         if (DEBUG) {
-            Log.w(stackTraceElement.getFileName() + " in " + stackTraceElement.getMethodName() +
-                    " at line: " + stackTraceElement.getLineNumber(), message);
+            Log.w(stackTraceElement.getFileName() + "/" + stackTraceElement.getMethodName() +
+                    "/" + stackTraceElement.getLineNumber(), message);
         }
 
     }
@@ -30,8 +30,8 @@ public class Logs {
     public static void i(String message) {
         StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[1];
         if (DEBUG) {
-            Log.i(stackTraceElement.getFileName() + " in " + stackTraceElement.getMethodName() +
-                    " at line: " + stackTraceElement.getLineNumber(), message);
+            Log.i(stackTraceElement.getFileName() + "/" + stackTraceElement.getMethodName() +
+                    "/" + stackTraceElement.getLineNumber(), message);
         }
 
     }
@@ -39,8 +39,8 @@ public class Logs {
     public static void e(String message) {
         StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[1];
         if (DEBUG) {
-            Log.e(stackTraceElement.getFileName() + " in " + stackTraceElement.getMethodName() +
-                    " at line: " + stackTraceElement.getLineNumber(), message);
+            Log.e(stackTraceElement.getFileName() + "/" + stackTraceElement.getMethodName() +
+                    "/" + stackTraceElement.getLineNumber(), message);
         }
 
     }
@@ -49,8 +49,8 @@ public class Logs {
     public static void e(int message) {
         StackTraceElement stackTraceElement = (new Throwable()).getStackTrace()[1];
         if (DEBUG) {
-            Log.e(stackTraceElement.getFileName() + " in " + stackTraceElement.getMethodName() +
-                    " at line: " + stackTraceElement.getLineNumber(), message + "");
+            Log.e(stackTraceElement.getFileName() + "/" + stackTraceElement.getMethodName() +
+                    "/" + stackTraceElement.getLineNumber(), message + "");
         }
 
     }
