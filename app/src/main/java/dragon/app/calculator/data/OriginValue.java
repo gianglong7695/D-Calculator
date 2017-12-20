@@ -1,5 +1,7 @@
 package dragon.app.calculator.data;
 
+import java.util.ArrayList;
+
 import dragon.app.calculator.R;
 import dragon.app.calculator.models.KeyEntity;
 
@@ -44,9 +46,31 @@ public class OriginValue {
     public static final KeyEntity KEY_COMMA = new KeyEntity(".", ".", R.string.type_com);
 
 
+    public static ArrayList<KeyEntity> listOriginKey = new ArrayList<>();
+
+    public static ArrayList<KeyEntity> getListOriginKey() {
+        listOriginKey.add(KEY_0);
+        listOriginKey.add(KEY_1);
+        listOriginKey.add(KEY_2);
+        listOriginKey.add(KEY_3);
+        listOriginKey.add(KEY_4);
+        listOriginKey.add(KEY_5);
+        listOriginKey.add(KEY_6);
+        listOriginKey.add(KEY_7);
+        listOriginKey.add(KEY_8);
+        listOriginKey.add(KEY_9);
+        listOriginKey.add(KEY_DIV);
+        listOriginKey.add(KEY_MUL);
+        listOriginKey.add(KEY_SUB);
+        listOriginKey.add(KEY_ADD);
+        listOriginKey.add(KEY_PERSENT);
+        listOriginKey.add(KEY_PARENTHESIS_1);
+        listOriginKey.add(KEY_PARENTHESIS_2);
+        listOriginKey.add(KEY_PLUS_MINUS);
+        listOriginKey.add(KEY_COMMA);
 
 
-
-
+        return listOriginKey;
+    }
 
 }

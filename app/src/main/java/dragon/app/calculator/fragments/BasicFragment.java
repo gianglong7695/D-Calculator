@@ -23,6 +23,8 @@ import dragon.app.calculator.models.KeyEntity;
 import dragon.app.calculator.utils.Calculation;
 import dragon.app.calculator.utils.Logs;
 
+import static android.R.id.list;
+import static android.provider.Contacts.SettingsColumns.KEY;
 import static dragon.app.calculator.data.OriginValue.KEY_0;
 import static dragon.app.calculator.data.OriginValue.KEY_1;
 import static dragon.app.calculator.data.OriginValue.KEY_2;
@@ -45,6 +47,7 @@ import static dragon.app.calculator.data.OriginValue.KEY_PARENTHESIS_2;
 import static dragon.app.calculator.data.OriginValue.KEY_PERSENT;
 import static dragon.app.calculator.data.OriginValue.KEY_PLUS_MINUS;
 import static dragon.app.calculator.data.OriginValue.KEY_SUB;
+import static dragon.app.calculator.data.OriginValue.getListOriginKey;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,15 +100,13 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.tv_comma)
     TextView tv_comma;
 
-
+    private ArrayList<KeyEntity> listHistoryKey;
     public ICallBack iCallBack;
     private String calculation = "";
     private String result = "";
-    private ArrayList<KeyEntity> listHistoryKey;
     private String num = "";
     private ArrayList<String> listNums = new ArrayList<>();
     private ArrayList<String> listCals = new ArrayList<>();
-    private boolean isNumMinus = false;
 
 
     @Override
@@ -240,28 +241,27 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     public void handlingKey(KeyEntity key) {
         // Saving key to list history
         listHistoryKey.add(key);
+        Logs.e("[Click] " + key.getKeyName());
 
 
         switch (key.getResType()) {
             case R.string.type_num:
-                if (!key.equals(KEY_0) || !listHistoryKey.get(listHistoryKey.size() - 1).equals(key)) {
-                    num += key.getKeyName();
-                    calculation += key.getKeyName();
+                num += key.getKeyName();
+                calculation += key.getKeyName();
 
-                    if (listHistoryKey.get(listHistoryKey.size() - 1).getResType() == R.string.type_num) {
-                        if (num.replace(KEY_PLUS_MINUS.getKeyValue(), "").length() > 1) {
-                            listNums.remove(listNums.size() - 1);
-                        }
-
-
-                        listNums.add(listCals.size(), num);
-
+                if (listHistoryKey.get(listHistoryKey.size() - 1).getResType() == R.string.type_num) {
+                    if (num.replace(KEY_PLUS_MINUS.getKeyValue(), "").length() > 1) {
+                        listNums.remove(listNums.size() - 1);
                     }
 
-                    result = calcutate();
-                    iCallBack.setResult(result, R.string.type_num);
-                    iCallBack.setCalculation(calculation, R.string.type_num);
+
+                    listNums.add(listCals.size(), num);
+
                 }
+
+                result = calcutate();
+                iCallBack.setResult(result, R.string.type_num);
+                iCallBack.setCalculation(calculation, R.string.type_num);
 
 
                 break;
@@ -273,22 +273,60 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
                     calculation += key.getKeyName();
                     iCallBack.setCalculation(calculation, R.string.type_cal);
-
                 }
 
                 break;
             case R.string.type_bac:
+//                if (calculation.length() > 1) {
+//                    if(calculation.substring(calculation.length()-2, calculation.length()-1)){
+//
+//                    }
+//
+//
+//
+//                    calculation = calculation.substring(0, calculation.length() - 1);
+//
+//                } else {
+//                    result = "0";
+//                    calculation = "0";
+//                }
+//
+//
+//
+//                iCallBack.setResult(result, R.string.type_bac);
+//                iCallBack.setCalculation(calculation, R.string.type_bac);
+
                 if (calculation.length() > 1) {
+
+
+                    Logs.e("BACK : " + calculation + " Found: " + getKeyFromKeyText(calculation.substring(calculation.length() - 2, calculation.length() - 1)).getKeyName());
+
+
                     calculation = calculation.substring(0, calculation.length() - 1);
-                    iCallBack.setResult(calculation, R.string.type_bac);
-                    iCallBack.setCalculation(calculation, R.string.type_bac);
+//                    if(calculation.substring(0, calculation.length()-1)){
+//
+//                    }
+
+
                 } else {
-                    iCallBack.setResult("0", R.string.type_bac);
-                    iCallBack.setCalculation("0", R.string.type_bac);
+                    result = "0";
+                    calculation = "0";
                 }
+
+
+                iCallBack.setResult(result, R.string.type_bac);
+                iCallBack.setCalculation(calculation, R.string.type_bac);
+
+
+
                 break;
             case R.string.type_res:
-                calculation = result;
+                calculation = num = result;
+                listNums = new ArrayList<>();
+                listCals = new ArrayList<>();
+
+
+                listNums.add(num);
 
                 iCallBack.setResult(result, R.string.type_res);
                 iCallBack.setCalculation(calculation, R.string.type_res);
@@ -307,16 +345,34 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
             case R.string.type_min:
 
-
                 if (listNums.size() > 0) {
 
 
-                    if(num.contains(KEY_PLUS_MINUS.getKeyValue())){
-                        calculation = calculation.substring(0, calculation.length() - 1);
-                        num = num.substring(1, num.length());
-                    }else{
-                        calculation += key.getKeyValue();
-                        num = key.getKeyValue();
+                    if (num.length() > 0 && !num.equals("-")) {
+
+                        if (!num.contains(KEY_PLUS_MINUS.getKeyValue())) {
+                            num = key.getKeyValue() + num;
+                        } else {
+                            num = num.substring(1, num.length());
+
+                        }
+                        listNums.remove(listNums.size() - 1);
+                        listNums.add(listCals.size(), num);
+
+
+                        result = calcutate();
+                        calculation = getCalculation().replace(KEY_PARENTHESIS_1.getKeyValue(), "").replace(KEY_PARENTHESIS_2.getKeyValue(), "");
+
+                        iCallBack.setResult(result, R.string.type_num);
+
+                    } else {
+                        if (num.contains(KEY_PLUS_MINUS.getKeyValue())) {
+                            calculation = calculation.substring(0, calculation.length() - 1);
+                            num = num.substring(1, num.length());
+                        } else {
+                            calculation += key.getKeyValue();
+                            num = key.getKeyValue();
+                        }
                     }
 
 
@@ -325,7 +381,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                         calculation = "";
                     } else {
                         calculation += key.getKeyValue();
-
+                        num += key.getKeyValue();
                     }
                 }
 
@@ -357,6 +413,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     public String calcutate() {
         double result = 0;
         String str_result = getCalculation();
+//        String str_result = "4%";
         str_result = str_result.replace('×', '*');
         str_result = str_result.replace('÷', '/');
 
@@ -423,12 +480,18 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
                         mCaculation += "-" + valueNumber;
                     }
 
+
                     if (listCals.get(i).equals("*")) {
                         mCaculation += "×" + valueNumber;
                     }
 
                     if (listCals.get(i).equals("/")) {
                         mCaculation += "÷" + valueNumber;
+                    }
+
+
+                    if (listCals.get(i).equals("%")) {
+                        mCaculation += "%" + valueNumber;
                     }
 
 
@@ -441,6 +504,25 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         }
 
         return mCaculation;
+    }
+
+
+    public KeyEntity getLastKeyHistory() {
+        return listHistoryKey.get(listHistoryKey.size() - 1);
+    }
+
+
+    public KeyEntity getKeyFromKeyText(String text) {
+        ArrayList<KeyEntity> listOriginKey = getListOriginKey();
+        for (int i = 0; i < listOriginKey.size(); i++) {
+            if (text.equals(listOriginKey.get(i).getKeyValue())) {
+                return listOriginKey.get(i);
+            }
+        }
+
+
+        return null;
+
     }
 
 
