@@ -237,7 +237,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
     public void handlingKey(KeyEntity key) {
         // Saving key to list history
         listHistoryKey.add(key);
-        Logs.e("[Click] " + key.getKeyName());
+        Logs.i("[Click] " + key.getKeyName());
 
 
         switch (key.getResType()) {
@@ -304,14 +304,14 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 //                    }
 
 
+                    iCallBack.setResult(result, R.string.type_bac);
+                    iCallBack.setCalculation(calculation, R.string.type_bac);
+
                 } else {
-                    result = "0";
-                    calculation = "0";
+                   clear();
                 }
 
 
-                iCallBack.setResult(result, R.string.type_bac);
-                iCallBack.setCalculation(calculation, R.string.type_bac);
 
 
 
@@ -408,16 +408,15 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
     public String calcutate() {
         double result = 0;
-        String str_result = getCalculation();
-//        String str_result = "4%";
-        str_result = str_result.replace('×', '*');
-        str_result = str_result.replace('÷', '/');
-
-
-        Logs.e("The calculation to calculate is : " + str_result);
-
-
         try {
+            String str_result = getCalculation();
+//        String str_result = "4%";
+            str_result = str_result.replace('×', '*');
+            str_result = str_result.replace('÷', '/');
+
+
+            Logs.e("The calculation to calculate is : " + str_result);
+
             result = Calculation.caculate(str_result);
         } catch (Exception e) {
             Logs.e(e.toString());
@@ -433,14 +432,14 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
 
     public void checkLogs() {
         String str = "";
-        Logs.e("----------------------------------------------------------------------------------");
+        Logs.i("----------------------------------------------------------------------------------");
 
         //Log numbers
 //        Logs.e(listNums.size());
         for (int i = 0; i < listNums.size(); i++) {
             str += listNums.get(i) + "  ";
         }
-        Logs.e(str);
+        Logs.i(str);
 
 
         //Log cals
@@ -449,7 +448,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener {
         for (int i = 0; i < listCals.size(); i++) {
             str += "  " + listCals.get(i);
         }
-        Logs.e(str);
+        Logs.i(str);
     }
 
 
