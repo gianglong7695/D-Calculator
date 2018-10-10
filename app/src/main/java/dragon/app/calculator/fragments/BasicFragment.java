@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.mariuszgromada.math.mxparser.Expression;
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -23,8 +21,6 @@ import dragon.app.calculator.models.KeyEntity;
 import dragon.app.calculator.utils.Calculation;
 import dragon.app.calculator.utils.Logs;
 
-import static android.R.id.list;
-import static android.provider.Contacts.SettingsColumns.KEY;
 import static dragon.app.calculator.data.OriginValue.KEY_0;
 import static dragon.app.calculator.data.OriginValue.KEY_1;
 import static dragon.app.calculator.data.OriginValue.KEY_2;

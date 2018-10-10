@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "dragon.app.calculator"
         minSdkVersion 15
@@ -20,20 +20,20 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     // -------------------------------------------------------------------------------
-    compile 'com.jakewharton:butterknife:8.8.1'
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:support-v4:26.+'
-    compile 'com.android.support:gridlayout-v7:23.1.1'
-    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
-    compile 'com.daimajia.easing:library:2.0@aar'
-    compile 'com.daimajia.androidanimations:library:2.3@aar'
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:26.+'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.android.support:appcompat-v7:26.+'
+    implementation 'com.android.support:support-v4:26.+'
+    implementation 'com.android.support:gridlayout-v7:26.+'
+    implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:design:26.+'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile files('libs/MathParser.org-mXparser-jdk17-4.1.1.jar')
+    implementation files('libs/MathParser.org-mXparser-jdk17-4.1.1.jar')
 }

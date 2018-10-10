@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                             .duration(500)
                             .repeat(0)
                             .playOn(tv_calculation);
+
                 }
                 break;
 
